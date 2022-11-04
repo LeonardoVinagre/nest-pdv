@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { LancheService } from './lanche.service';
 
-@Controller('lanche')
+@Controller('cardapio')
 export class LancheController {
     
     constructor(private lancheService: LancheService) {}
