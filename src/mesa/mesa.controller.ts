@@ -8,6 +8,6 @@ export class MesaController {
 
     @Get()
     async addCart() {
-        return this.mesaService.addCart('Cocacola',2,'Bebidas');
+        return this.mesaService.addCart('Coca-Cola',2,'Bebidas');
     }
 }

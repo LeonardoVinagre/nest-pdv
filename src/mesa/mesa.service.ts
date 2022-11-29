@@ -11,14 +11,17 @@ export class MesaService {
         
         let pedidos = mesaDoc.data().pedidos;
 
-  
-        const valorProdutoREF = database.collection('Cardapio').doc('Produtos').collection(tipoProduto).doc(nome);
-        const snapshot = await valorProdutoREF.get();
-        const valorProdAdicionado = snapshot.data().valor;
+        
+        const novoItemRef = database.collection('Cardapio').doc(tipoProduto);
+        const novoItemDoc = await novoItemRef.get();
+        var valorProdAdicionado;
+        
+        for(let i = 0 ; i < novoItemDoc.data().Itens.length ; i++){
+            if(novoItemDoc.data().Itens[i].nome == nome){
+                valorProdAdicionado = novoItemDoc.data().Itens[i].price;
+            }
+        }
 
-        console.log(valorProdAdicionado);
-        
-        
 
         var cart = {
             pedidos:pedidos
@@ -26,17 +29,17 @@ export class MesaService {
         var novoPedido = {
             nome: nome,
             quantidade: quantidade,
-            valor: valorProdAdicionado
+            valor: valorProdAdicionado*quantidade
         }
         cart.pedidos.push(novoPedido);
         
         mesaRef.set(cart, {merge: true});
 
         mesaRef.update({
-            valorTotal: mesaDoc.data().valorTotal + valorProdAdicionado
+            valorTotal: mesaDoc.data().valorTotal + valorProdAdicionado*quantidade
         })
         
 
-        return cart;
+        return novoItemDoc.data();
     }
 }

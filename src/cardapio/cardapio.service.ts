@@ -7,24 +7,13 @@ import { doc } from 'prettier';
 export class CardapioService {
 
     public async getCardapio(){
-        const bebidasRef = database.collection('Cardapio').doc('Produtos').collection('Bebidas');
-        const lanchesRef = database.collection('Cardapio').doc('Produtos').collection('Lanches');
-        const bebidasDoc = await bebidasRef.get();
-        const lanchesDoc = await lanchesRef.get();
-
-        const cardapio = [{
-            Bebidas: [
-
-            ],     
-            Lanches: [
-
-            ]
-        }];
+        const ref = database.collection('Cardapio');
+        const snapshot = await ref.get();
         
-        bebidasDoc.forEach(doc => cardapio[0].Bebidas.push({ id: doc.id, ...doc.data() }))
-        lanchesDoc.forEach(doc => cardapio[0].Lanches.push({ id: doc.id, ...doc.data() }))
-        console.log(cardapio[0])
-        return cardapio;
+        const docs = snapshot.docs.map((doc) => {
+            return ({id:doc.id, ...doc.data()});
+        })
+        return docs;
     }
 }
 
