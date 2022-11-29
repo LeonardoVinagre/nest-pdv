@@ -107,13 +107,14 @@ export class MesaService {
 
     public async deleteItens() {
         const mesaRef = database.collection('Mesa').doc('Mesa1');
-        const mesaDoc = await mesaRef.get();
 
-        let removeItens = mesaDoc.update({
-            pedidos: firestore.FieldValue.delete()
+        var pedidos = []
+
+        let removeItens = mesaRef.set({
+            pedidos: pedidos,
+            valorTotal: 0
         })
         return 'Pedidos deletados'
     }
 }
 
-//490642ad-752b-4be4-929e-d8031ba2d8e6

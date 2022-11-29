@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { MesaService } from './mesa.service';
 
 @Controller('mesa')
@@ -19,5 +19,8 @@ export class MesaController {
         return this.mesaService.getCart();
     }
 
-    
+    @Delete('carrinho')
+    deleteItens() {
+        return this.mesaService.deleteItens();
+    }
 }
