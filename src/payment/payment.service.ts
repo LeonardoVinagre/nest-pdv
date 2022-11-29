@@ -16,7 +16,7 @@ export class PaymentService {
         }
 
         const code = await Pix(paymentData.chave,paymentData.nome,paymentData.cidade,valor,paymentData.codPedido, true)
-        const myQrCode = code.substring(0, code.length)
+        const myQrCode = code.substring(22, code.length)
         return myQrCode;
     }
 }
