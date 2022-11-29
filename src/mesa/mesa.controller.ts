@@ -13,4 +13,11 @@ export class MesaController {
         this.mesaService.addCart(nome, quantidade, tipoProduto);
         return 'Produto adicionado'
     }
+
+    @Get('carrinho')
+    getCart() {
+        return this.mesaService.getCart();
+    }
+
+    
 }
