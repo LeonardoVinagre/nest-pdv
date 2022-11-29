@@ -54,8 +54,6 @@ export class MesaService {
         ];
         
         
-        // pedidos.push(teste);
-        console.log(pedidos.length);
         
         for(let i = 0 ; i < mesaDoc.data().pedidos.length ; i++ ) {
 

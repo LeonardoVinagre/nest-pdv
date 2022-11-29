@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 
 @Controller('payment')
@@ -6,7 +6,7 @@ export class PaymentController {
 
     constructor(private paymentService: PaymentService) {}
 
-    @Get()
+    @Post()
     async getCardapio(@Query('valor') valor: number) {
         return this.paymentService.pix(valor);
     }
