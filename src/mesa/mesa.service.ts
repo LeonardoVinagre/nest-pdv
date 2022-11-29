@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { TestScheduler } from 'rxjs/testing';
 import { database } from '../firestore/firestoreprovider';
 
 @Injectable()
@@ -40,6 +39,6 @@ export class MesaService {
         })
         
 
-        return novoItemDoc.data();
+        return novoPedido;
     }
 }
