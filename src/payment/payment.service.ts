@@ -15,8 +15,10 @@ export class PaymentService {
             codPedido: "#Pedido " + Math.floor(Math.random() * 10000000) + 10000
         }
 
-        const code = await Pix(paymentData.chave,paymentData.nome,paymentData.cidade,valor,paymentData.codPedido, true)
-        const myQrCode = code.substring(22, code.length)
-        return myQrCode;
+        const qrCode = await Pix(paymentData.chave,paymentData.nome,paymentData.cidade,valor,paymentData.codPedido, true)
+        const pixCode = await Pix(paymentData.chave,paymentData.nome,paymentData.cidade,valor,paymentData.codPedido)
+        const myQrCode = qrCode.substring(22, qrCode.length)
+        var pixResponse = [myQrCode, pixCode]
+        return pixResponse;
     }
 }
